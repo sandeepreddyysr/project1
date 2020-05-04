@@ -1,0 +1,24 @@
+
+<div class="login-wrapper">
+<mat-card class="mat-card-bg mat-elevation-z8">
+    <div>
+        <h2 class="login-text">Login to Continue</h2>
+        <form [formGroup]="loginForm" class="login-container" (ngSubmit)="login()" fxLayout="column">
+            <mat-form-field appearance="outline" fxFlex="100%">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Enter Your Email" type="email" formControlName="email">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error>Enter Valid Email Address</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" fxFlex="100%">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Enter Your Password" type="password" formControlName="password">
+                <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+            <div fxLayoutAlign="center center">
+                <button [disabled]="loginForm.invalid" class="login-button" color="primary" mat-raised-button>Login</button>
+            </div>
+        </form>
+    </div>
+</mat-card>
+</div>

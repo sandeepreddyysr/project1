@@ -1,0 +1,30 @@
+Angular 9 Login Demo Example Project
+
+:author: Anvesh
+:keywords: Angular, Angular CLI, TypeScript, JavaScript, Node, npm, Jasmine, Protractor
+:icons: font
+:lang: en
+:language: javadocript
+:sourcedir: .
+ifndef::env-github[]
+:icons: font
+endif::[]
+ifdef::env-github,env-browser[]
+:toc: preamble
+:toclevels: 2
+endif::[]
+ifdef::env-github[]
+:status:
+:outfilesuffix: .adoc
+:!toc-title:
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+:toc: macro
+
+This example project will help you out with basic login example using https://angular.io[Angular] and
+https://github.com/angular/angular-cli[Angular CLI] version 9.0.
+
