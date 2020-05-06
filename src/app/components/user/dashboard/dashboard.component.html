@@ -1,1 +1,2 @@
-<p>dashboard works!</p>
+<h1 *ngIf="userData.isAdmin"> Welcome Admin </h1>
+<h1 *ngIf="!userData.isAdmin"> Welcome User </h1>

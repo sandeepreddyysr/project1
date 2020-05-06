@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { StorageService } from '../../storage.service';
 
 @Component({
   selector: 'app-header',
@@ -8,22 +9,32 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   authService: any;
+  isLoggedIn: boolean;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _storage: StorageService
   ) { }
 
   ngOnInit(): void {
     console.log(this.router.url);
+    if(this._storage.getStorageItem('loggedUser', 'local')) {
+  		this.isLoggedIn = true;
+  	}
+  	else {
+  		this.isLoggedIn = false;
+  	}
   }
 
   goToLogin() {
     this.router.navigate(['/authentication/login'])
   }
+  
   logout(){
-    this.authService.logout();
-    this.router.navigateByUrl('/login');
+    this._storage.removeAllStorageItems('all');
+    this.router.navigateByUrl('/authentication/login');
+    window.location.reload();
   }
   }
 

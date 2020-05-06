@@ -33,18 +33,21 @@ export class LoginComponent implements OnInit {
 
   login() {
     
-    if(this.loginForm.value.email === 'admin@domain.com' && this.loginForm.value.password === 'admin@123') {
+    if(true) {
 
-      const params = { url: 'api/login', data: {email: 'eve.holt@reqres.in', password: 'cityslicka'}};
+      const params = { url: 'login', data: {username: this.loginForm.value.email, password: this.loginForm.value.password}};
 
       this._api.post(params).subscribe(result => {  
         console.log(result);
         let storage = this._storage.setStorageItem('loggedUser', result, 'local');
         if(storage) {
-           this.router.navigate(['/user/dashboard']);
+          this._snackBar.open('Login Successfull');
+          this.router.navigate(['/user/dashboard']);
+          window.location.reload();
         }
       },err=>{
         console.log(err);
+        this._snackBar.open('Invalid Credentials');
       })
 
     }

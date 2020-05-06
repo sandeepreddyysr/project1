@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="isLoggedIn">
     <mat-toolbar-row>
         <div fxFlex fxLayout="row" fxLayoutAlign="start start">
          <h2>Omniwyse</h2>
@@ -8,5 +8,12 @@
         <button (click)="logout()">Logout</button>  <hr><hr>
 
        
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-toolbar color="primary" *ngIf="!isLoggedIn">
+    <mat-toolbar-row>
+        <div fxFlex fxLayout="row" fxLayoutAlign="start start">
+         <h2>Omniwyse Nsotification</h2>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>
