@@ -12,6 +12,10 @@ const routes: Routes = [
     path: '',
     component: UserComponent    
   },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsModule)
+  },
 ];
 
 

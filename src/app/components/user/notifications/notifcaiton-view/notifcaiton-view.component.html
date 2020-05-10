@@ -1,0 +1,11 @@
+<div class="notification-view" fxLayout="column">
+	<mat-card class="mat-elevation-z8 notification-card" fxFlex="calc(33%-20px)" fxLayoutGap="20px">
+	  <mat-card-header>
+	    <div mat-card-avatar class="example-header-image"></div>
+	    <mat-card-title>{{post.postTitle}}</mat-card-title>
+	  </mat-card-header>
+	  <mat-card-content>
+	    <div [innerHTML]="post.postDescription"></div>
+	  </mat-card-content>
+	</mat-card>
+</div>

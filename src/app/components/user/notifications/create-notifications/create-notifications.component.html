@@ -1,0 +1,19 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+	<form [formGroup]="postForm" class="post-container" (ngSubmit)="post()" fxLayout="column">
+        <mat-form-field appearance="outline" fxFlex="100%">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Enter Post Title" type="text" formControlName="postTitle">
+            <mat-error>Title Required</mat-error>
+        </mat-form-field>
+        <ckeditor formControlName="postDescription" [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+
+<!--         <mat-form-field appearance="outline" fxFlex="100%">
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Enter description" type="description" formControlName="postDescription">
+    <mat-error>Description Required</mat-error>
+</mat-form-field> -->
+        <div fxLayoutAlign="center center">
+            <button [disabled]="postForm.invalid" class="post-button" color="primary" mat-raised-button>Post</button>
+        </div>
+    </form>
+</div>

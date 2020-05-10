@@ -1,2 +1,21 @@
-<h1 *ngIf="userData.isAdmin"> Welcome Admin </h1>
-<h1 *ngIf="!userData.isAdmin"> Welcome User </h1>
+
+<div id="dashboard">
+	<h1 *ngIf="userData.isAdmin"> Welcome Admin </h1>
+	<h1 *ngIf="!userData.isAdmin"> Welcome User </h1>
+
+	<div class="notifications-block" fxLayout="row wrap"> 
+		<mat-card *ngFor="let post of postList" class="mat-elevation-z8 notification-card" fxFlex="calc(33%-20px)" fxLayoutGap="20px">
+		  <mat-card-header>
+		    <div mat-card-avatar class="example-header-image"></div>
+		    <mat-card-title>{{post.postTitle}}</mat-card-title>
+		  </mat-card-header>
+		  <mat-card-content>
+		    <div [innerHTML]="post.postDescription"></div>
+		  </mat-card-content>
+		  <mat-card-actions>
+		    <button (click)="goToNotificationView()" mat-button color="primary">View Notifcaiton</button>
+		  </mat-card-actions>
+		</mat-card>
+	</div>
+
+</div>
