@@ -32,22 +32,23 @@ export class CreateNotificationsComponent implements OnInit {
 
   post() {
 
-
     console.log(JSON.stringify(this.postForm.value.postDescription));
 
     let params = {
-      url: 'login',
+      url: 'create',
       data: {
         title: this.postForm.value.postTitle,
         description: this.postForm.value.postDescription
       }
-    }
+    };
 
     this._api.post(params).subscribe(result => {  
-        console.log(result);
-      },err=>{
-        console.log(err);
-      })
+      console.log(result);
+      this.router.navigate(['/user/dashboard']);
+    },err=>{
+      console.log(err);
+      this._snackBar.open('Failed To Post. Try Again');
+    })
   }
 
 }

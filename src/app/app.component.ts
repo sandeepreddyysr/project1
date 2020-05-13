@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
     /*const user = {
       "id": '20349jukjsjf3o9',
-      "name": "anvesh",
+      "name": "test",
       "isAdmin": true
     }
 
