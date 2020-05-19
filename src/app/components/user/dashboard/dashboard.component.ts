@@ -24,7 +24,8 @@ export class DashboardComponent implements OnInit {
     /*this.postList = [{
       id: 1,
       title: "Job opening in hyderabad",
-      description: "Your news feed helps you keep up with recent activity on repositories you watch and people you follow."
+      description: "Your news feed helps you keep up with recent activity on repositories you watch and people you follow.",
+      imageURL: "https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"
     },
     {
       id: 2,

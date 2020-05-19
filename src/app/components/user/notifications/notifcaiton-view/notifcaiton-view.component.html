@@ -5,6 +5,7 @@
 	    <mat-card-title>{{post.title}}</mat-card-title>
 	  </mat-card-header>
 	  <mat-card-content>
+	  	<img src="{{post.imageURL}}" *ngIf="post.imageURL">
 	    <div [innerHTML]="post.description"></div>
 	  </mat-card-content>
 	</mat-card>

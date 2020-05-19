@@ -5,3 +5,13 @@
 .post-button {
 	margin-top: 24px;
 }
+
+.mt-12 {
+	margin-top: 12px;
+}
+
+.upload-image {
+	background: #f2f2f2;
+    padding: 16px;
+    border-radius: 6px;
+}

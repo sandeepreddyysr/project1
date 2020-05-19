@@ -9,9 +9,12 @@
 		    <div mat-card-avatar class="example-header-image"></div>
 		    <mat-card-title>{{post.title}}</mat-card-title>
 		  </mat-card-header>
-		  <mat-card-content>
-		    <div [innerHTML]="post.description"></div>
+		  <mat-card-content fxLayoutAlign="center center" *ngIf="post.imageURL">
+		  	<img class="post-image" src="{{post.imageURL}}">
 		  </mat-card-content>
+		  <!-- <mat-card-content>
+		    <div [innerHTML]="post.description"></div>
+		  </mat-card-content> -->
 		  <mat-card-actions>
 		    <button (click)="goToNotificationView(post)" mat-button color="primary">View Notifcaiton</button>
 		  </mat-card-actions>

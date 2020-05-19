@@ -15,6 +15,20 @@ export class CreateNotificationsComponent implements OnInit {
 
   postForm: FormGroup;
   public Editor = ClassicEditor;
+  public tagsList: any = [
+    {
+      "id": 1,
+      "name": "Java Script Team"
+    },
+    {
+      "id": 2,
+      "name": "Java Team"
+    },
+    {
+      "id": 3,
+      "name": "Android Team"
+    }
+  ]
   
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -26,7 +40,9 @@ export class CreateNotificationsComponent implements OnInit {
   ngOnInit(): void {
   	this.postForm = this.formBuilder.group({
       postTitle: ['', [Validators.required]],
-      postDescription: ['', Validators.required]
+      postDescription: ['', Validators.required],
+      postImage: ['', Validators.required],
+      tags: ['', Validators.required]
     });
   }
 

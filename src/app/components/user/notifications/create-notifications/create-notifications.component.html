@@ -1,11 +1,23 @@
 <div fxLayout="column" fxLayoutAlign="center center">
 	<form [formGroup]="postForm" class="post-container" (ngSubmit)="post()" fxLayout="column">
+
         <mat-form-field appearance="outline" fxFlex="100%">
             <mat-label>Title</mat-label>
             <input matInput placeholder="Enter Post Title" type="text" formControlName="postTitle">
             <mat-error>Title Required</mat-error>
         </mat-form-field>
+
         <ckeditor formControlName="postDescription" [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+
+        <mat-form-field appearance="outline" fxFlex="100%" class="mt-12">
+          <mat-label>Tags</mat-label>
+          <mat-select formControlName="tags" multiple>
+            <mat-option *ngFor="let tag of tagsList" [value]="tag.id">{{tag.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <input class="mt-12 upload-image" placeholder="Upload Notification Image" type="file" formControlName="postImage">
+
 
 <!--         <mat-form-field appearance="outline" fxFlex="100%">
     <mat-label>Description</mat-label>
