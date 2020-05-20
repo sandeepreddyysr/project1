@@ -1,8 +1,8 @@
 <div class="notification-view" fxLayout="column">
 	<mat-card class="mat-elevation-z8 notification-card" fxFlex="calc(33%-20px)" fxLayoutGap="20px">
-	  <mat-card-header>
-	    <div mat-card-avatar class="example-header-image"></div>
+	  <mat-card-header fxLayoutAlign="space-between center">
 	    <mat-card-title>{{post.title}}</mat-card-title>
+	    <div class="date">{{post.date | date: 'medium'}}</div>
 	  </mat-card-header>
 	  <mat-card-content>
 	  	<img src="{{post.imageURL}}" *ngIf="post.imageURL">

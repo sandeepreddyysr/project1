@@ -14,13 +14,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    /*const user = {
+    const user = {
       "id": '20349jukjsjf3o9',
       "name": "test",
       "isAdmin": true
     }
 
-    this._storage.setStorageItem('loggedUser', user, 'local');*/
+    this._storage.setStorageItem('loggedUser', user, 'local');
 
   	if(this._storage.getStorageItem('loggedUser', 'local')) {
   		this.router.navigate(['/user/dashboard']);

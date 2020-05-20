@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../../material.module';
+import { DatePipe } from '@angular/common';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
     CommonModule,
     MaterialModule,
     RouterModule.forChild(routes)
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class DashboardModule { }

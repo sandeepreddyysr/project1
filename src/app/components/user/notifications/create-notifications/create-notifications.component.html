@@ -16,7 +16,7 @@
           </mat-select>
         </mat-form-field>
 
-        <input class="mt-12 upload-image" placeholder="Upload Notification Image" type="file" formControlName="postImage">
+        <input class="mt-12 upload-image" (change)="onFileSelect($event)" placeholder="Upload Notification Image" type="file" formControlName="postImage" accept="image/*">
 
 
 <!--         <mat-form-field appearance="outline" fxFlex="100%">

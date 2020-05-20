@@ -13,6 +13,7 @@ import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiServiceService } from './api-service.service';
 import { StorageService } from './storage.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { StorageService } from './storage.service';
     MaterialModule,
     ReactiveFormsModule
   ],
-  providers: [ApiServiceService, StorageService],
+  providers: [ApiServiceService, StorageService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

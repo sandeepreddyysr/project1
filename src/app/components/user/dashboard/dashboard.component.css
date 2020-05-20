@@ -13,3 +13,33 @@
 	height: 150px;
 	width: 150px;
 }
+
+.mat-card-header .mat-card-title {
+    margin-bottom: 0px !important;
+}
+
+.mat-card-header .mat-card-title {
+    font-size: 14px;
+    letter-spacing: .5px;
+    color: #fff;
+}
+
+.mat-card-header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    background: #673ab7;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 6px;
+    margin-right: 0px !important;
+}
+
+.date {
+	margin-right: 12px;
+    font-size: 12px;
+    letter-spacing: .5px;
+    font-weight: bold;
+}

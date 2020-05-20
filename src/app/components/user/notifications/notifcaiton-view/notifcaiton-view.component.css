@@ -5,3 +5,10 @@
 .mat-card {
 	overflow: hidden;
 }
+
+.date {
+	margin-right: 12px;
+    font-size: 12px;
+    letter-spacing: .5px;
+    font-weight: bold;
+}
