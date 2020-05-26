@@ -14,6 +14,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ApiServiceService } from './api-service.service';
 import { StorageService } from './storage.service';
 import { DatePipe } from '@angular/common';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -28,8 +31,13 @@ import { DatePipe } from '@angular/common';
     FooterModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MaterialModule,
-    ReactiveFormsModule
+    MaterialModule,  
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatInputModule,
+
+    
   ],
   providers: [ApiServiceService, StorageService, DatePipe],
   bootstrap: [AppComponent]
