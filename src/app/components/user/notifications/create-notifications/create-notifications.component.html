@@ -16,12 +16,13 @@
           </mat-select>
         </mat-form-field>
 
-        <input class="mt-12 upload-image" (change)="onFileSelect($event)" placeholder="Upload Notification Image" type="file" formControlName="postImage" accept="image/*">
-        <form action="/action_page.php">
-          <label for="birthdaytime">Schedule Post</label>
-          <input type="datetime-local" id="birthdaytime" name="birthdaytime">
-          <input type="submit">
-        </form>
+    <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
 
 <!--         <mat-form-field appearance="outline" fxFlex="100%">
     <mat-label>Description</mat-label>
