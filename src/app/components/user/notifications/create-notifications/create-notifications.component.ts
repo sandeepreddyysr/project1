@@ -23,7 +23,7 @@ export class CreateNotificationsComponent implements OnInit {
   public tagsList: any = [
     {
       "id": 1,
-      "name": "Java Script Team"
+      "name": "All"
     },
     {
       "id": 2,
