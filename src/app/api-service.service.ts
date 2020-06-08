@@ -12,8 +12,6 @@ const API_URL = environment.API;
 })
 export class ApiServiceService {
 
-	private modelMapping: any = {};
-
     constructor(private http: HttpClient) { 
 
     }
@@ -75,6 +73,14 @@ export class ApiServiceService {
 	        return throwError(err)
 	      })
 	    );
-    }
+	}
+	
+	getToken() {
+		let user = JSON.parse(localStorage.getItem('loggedUser'));
+		if(user)
+			return user.token;
+		else
+			return '';
+	}
 
 }

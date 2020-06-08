@@ -16,7 +16,13 @@
           </mat-select>
         </mat-form-field>
 
-        <input class="mt-12 upload-image" (change)="onFileSelect($event)" placeholder="Upload Notification Image" type="file" formControlName="postImage" accept="image/*">
+        <mat-form-field appearance="outline" fxFlex="100%" class="mt-12">
+          <mat-label>Link</mat-label>
+          <input matInput placeholder="Url [https://google.co.in]" type="text" formControlName="link">
+        </mat-form-field>
+
+        <input class="mt-12 upload-image" (change)="onFileSelect($event)" placeholder="Upload Notification Image" type="file"
+          formControlName="postImage" accept="image/*">
 
         <mat-form-field appearance="outline"  fxFlex="100%" class="mt-12">
            <input matInput [ngxMatDatetimePicker]="picker1" 
@@ -24,6 +30,7 @@
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
         </mat-form-field>
+        
 
 
 <!--         <mat-form-field appearance="outline" fxFlex="100%">
@@ -32,7 +39,8 @@
     <mat-error>Description Required</mat-error>
 </mat-form-field> -->
         <div fxLayoutAlign="center center">
-            <button [disabled]="postForm.invalid" class="post-button" color="primary" mat-raised-button>Post</button>
+            <button *ngIf="!editMode" [disabled]="postForm.invalid" class="post-button" color="primary" mat-raised-button>Create Post</button>
+            <button *ngIf="editMode" [disabled]="postForm.invalid" class="post-button" color="primary" mat-raised-button>Update Post</button>
         </div>
     </form>
 </div>

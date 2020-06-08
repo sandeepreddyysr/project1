@@ -62,9 +62,12 @@ export class DashboardComponent implements OnInit {
     this.getNotifications();
   }
 
-  goToNotificationView(post) {
+  goToNotificationView(post, type) {
     this._storage.setStorageItem('post', post, 'session');
-    this.router.navigateByUrl('/user/notifications/view-notification');
+    if(type == 'view')
+      this.router.navigateByUrl('/user/notifications/view-notification');
+    if(type == 'edit')
+      this.router.navigateByUrl('/user/notifications/post-notification/'+post._id);
   }
 
   getNotifications() {
@@ -78,6 +81,20 @@ export class DashboardComponent implements OnInit {
       console.log(err);
     })
 
+  }
+
+  delete(data) {
+
+    if(confirm("Are you sure to delete "+ data.title)) {
+        const params = { url: 'delete/'+ data._id };
+
+        this._api.delete(params).subscribe(result => {  
+          this.getNotifications();
+        },err=>{
+          console.log(err);
+        })
+
+    }
   }
 
 }

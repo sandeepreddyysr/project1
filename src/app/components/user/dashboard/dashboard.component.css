@@ -43,3 +43,11 @@
     letter-spacing: .5px;
     font-weight: bold;
 }
+
+.action-icons {
+    color: #fefefe;
+    margin-left: 4px;
+    margin-right: 4px;
+    font-size: 18px;
+    cursor: pointer;
+}

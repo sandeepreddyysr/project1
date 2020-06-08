@@ -5,8 +5,12 @@
 
 	<div class="notifications-block" fxLayout="row wrap" *ngIf="postList.length"> 
 		<mat-card *ngFor="let post of postList" class="mat-elevation-z8 notification-card" fxFlex="calc(33%-20px)" fxLayoutGap="20px">
-		  <mat-card-header fxLayoutAlign="center center">
+		  <mat-card-header fxLayoutAlign="space-between center">
 		    <mat-card-title>{{post.title}}</mat-card-title>
+		    <div>
+		    	<mat-icon class="action-icons" (click)="goToNotificationView(post,'edit');">edit</mat-icon>
+		    	<mat-icon class="action-icons" (click)="delete(post)">delete</mat-icon>
+		    </div>
 		  </mat-card-header>
 		  <mat-card-content fxLayoutAlign="center center" *ngIf="post.imageURL">
 		  	<img class="post-image" src="{{post.imageURL}}">
@@ -15,7 +19,7 @@
 		    <div [innerHTML]="post.description"></div>
 		  </mat-card-content> -->
 		  <mat-card-actions fxLayoutAlign="space-between center">
-		    <button (click)="goToNotificationView(post)" mat-button color="primary">View Notifcaiton</button>
+		    <button (click)="goToNotificationView(post,'view')" mat-button color="primary">View Notifcaiton</button>
 		    <div class="date">{{post.date | date: 'medium'}}</div>
 		  </mat-card-actions>
 		</mat-card>

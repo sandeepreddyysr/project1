@@ -5,9 +5,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiServiceService } from '../../../../api-service.service';
 import { StorageService } from '../../../../storage.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import * as moment from 'moment';
 import { ThemePalette } from '@angular/material/core';
+import { environment } from '../../../../../environments/environment';
+
+const API_URL = environment.API;
 
 @Component({
   selector: 'app-create-notifications',
@@ -22,19 +25,27 @@ export class CreateNotificationsComponent implements OnInit {
   public Editor = ClassicEditor;
   public tagsList: any = [
     {
-      "id": 1,
-      "name": "Java Script Team"
+      "id": 'iosTeam',
+      "name": "IOS Team"
     },
     {
-      "id": 2,
+      "id": 'devopsTeam',
+      "name": "DevOps Team"
+    },
+    {
+      "id": 'testingTeam',
+      "name": "Testing Team"
+    },
+    {
+      "id": 'javaTeam',
       "name": "Java Team"
     },
     {
-      "id": 3,
-      "name": "Android Team"
-    }
+      "id": 'all',
+      "name": "All"
+    },
   ];
-  public SERVER_URL = "http://localhost:8080/create";
+  public SERVER_URL = "";
   public date: moment.Moment;
   public disabled = false;
   public showSpinners = true;
@@ -48,6 +59,17 @@ export class CreateNotificationsComponent implements OnInit {
   public stepSecond = 1;
   public color: ThemePalette = 'primary';
   public tagsListData: any;
+  public token: any;
+  public notificationData: any = {
+    title: '',
+    description: '',
+    date: '',
+    id: '',
+    link: '',
+    tags: ''
+  };
+  public id: any;
+  public editMode: boolean;
   
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -58,12 +80,28 @@ export class CreateNotificationsComponent implements OnInit {
     private _httpClient: HttpClient) { }
 
   ngOnInit(): void {
+
+    this.id = this.route.snapshot.paramMap.get('id');
+    if(this.id) {
+      this.editMode = true;
+    }
+
+    let postData = this._storage.getStorageItem('post', 'session');
+
+    if(postData._id == this.id) {
+      this.notificationData.title = postData.title
+      this.notificationData.description = postData.description
+      this.notificationData.date = postData.date
+      this.notificationData.id = postData._id
+    }
+
   	this.postForm = this.formBuilder.group({
-      postTitle: ['', [Validators.required]],
-      postDescription: ['', Validators.required],
+      postTitle: [this.notificationData.title, [Validators.required]],
+      postDescription: [this.notificationData.description, Validators.required],
       postImage: [''],
-      tags: [''],
-      date: ['']
+      tags: [],
+      link: [this.notificationData.link],
+      date: [this.notificationData.date]
     });
   }
 
@@ -102,16 +140,38 @@ export class CreateNotificationsComponent implements OnInit {
       console.log(this.tagsListData);
     }
 
+    let data = this._storage.getStorageItem('loggedUser', 'local');
+
+    this.token = data.token;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authorization': "Bearer " + this.token
+      })
+    };
+
     const formData = new FormData();
     formData.append('image', this.postForm.get('postImage').value);
     formData.append('title', this.postForm.value.postTitle);
     formData.append('description', this.postForm.value.postDescription);
     formData.append('scheduledDate', this.postForm.value.date);
     formData.append('isScheduled', dateEntered);
-    this._httpClient.post<any>(this.SERVER_URL, formData).subscribe(
-      (res) => this.router.navigate(['/user/dashboard']),
-      (err) => console.log(err)
-    );
+    formData.append('link', this.postForm.value.link);
+
+    if(!this.editMode) {
+      this.SERVER_URL = API_URL + 'create';
+      this._httpClient.post<any>(this.SERVER_URL, formData, httpOptions).subscribe(
+        (res) => this.router.navigate(['/user/dashboard']),
+        (err) => console.log(err)
+      );
+    }
+    if(this.editMode) {
+      this.SERVER_URL = API_URL + 'update' + '/' + this.id;
+      this._httpClient.put<any>(this.SERVER_URL, formData).subscribe(
+        (res) => this.router.navigate(['/user/dashboard']),
+        (err) => console.log(err)
+      ); 
+    }
 
   }
 

@@ -10,6 +10,10 @@ const routes: Routes = [
     loadChildren: () => import('./create-notifications/create-notifications.module').then(m => m.CreateNotificationsModule)
   },
   {
+    path: 'post-notification/:id',
+    loadChildren: () => import('./create-notifications/create-notifications.module').then(m => m.CreateNotificationsModule)
+  },
+  {
     path: 'view-notification',
     loadChildren: () => import('./notifcaiton-view/notifcaiton-view.module').then(m => m.NotifcaitonViewModule)
   },

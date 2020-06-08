@@ -15,6 +15,8 @@ import { ApiServiceService } from './api-service.service';
 import { StorageService } from './storage.service';
 import { DatePipe } from '@angular/common';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { JwtTokenService } from './jwt-token.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-mat
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule
   ],
-  providers: [ApiServiceService, StorageService, DatePipe],
+  providers: [ApiServiceService, StorageService, DatePipe, 
+    { provide: HTTP_INTERCEPTORS, useClass: JwtTokenService, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
