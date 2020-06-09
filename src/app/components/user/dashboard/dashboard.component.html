@@ -8,12 +8,13 @@
 		  <mat-card-header fxLayoutAlign="space-between center">
 		    <mat-card-title>{{post.title}}</mat-card-title>
 		    <div>
-		    	<mat-icon class="action-icons" (click)="goToNotificationView(post,'edit');">edit</mat-icon>
-		    	<mat-icon class="action-icons" (click)="delete(post)">delete</mat-icon>
+		    	<mat-icon *ngIf="userData.isAdmin && isScheduledRoute" class="action-icons" (click)="goToNotificationView(post,'edit');">edit</mat-icon>
+		    	<mat-icon *ngIf="userData.isAdmin" class="action-icons" (click)="delete(post)">delete</mat-icon>
 		    </div>
 		  </mat-card-header>
-		  <mat-card-content fxLayoutAlign="center center" *ngIf="post.imageURL">
-		  	<img class="post-image" src="{{post.imageURL}}">
+		  <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+		  	<img class="post-image" src="{{post.imageURL}}" onError="src='assets/images/404.svg'">
+		  	<h2 class="tag" fxLayoutAlign="start center" >Tag : {{post.tag}}</h2>
 		  </mat-card-content>
 		  <!-- <mat-card-content>
 		    <div [innerHTML]="post.description"></div>

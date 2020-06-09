@@ -15,3 +15,8 @@
     padding: 16px;
     border-radius: 6px;
 }
+
+.no-action {
+	pointer-events: none;
+	cursor: not-allowed;
+}

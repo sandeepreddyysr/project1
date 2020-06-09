@@ -26,8 +26,9 @@ export class JwtTokenService {
 
     const loginUrl = APIURL + 'login';
     const createPost = APIURL + 'create';
+    const updatePost = APIURL + 'update';
 
-    if (req.url != loginUrl && req.url != createPost) {
+    if (req.url != loginUrl && req.url != createPost && req.url != updatePost) {
 
       this.token = this.api.getToken();
 

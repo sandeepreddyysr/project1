@@ -3,9 +3,9 @@
         <div fxFlex fxLayout="row" fxLayoutAlign="start start">
          <h2 style="cursor: pointer;" (click)="goTo()">Omniwyse</h2>
         </div>
+        <button (click)="goToSchedules()" *ngIf="userData.isAdmin">Schedules</button> 
         <button (click)="postNotification()" *ngIf="userData.isAdmin">Post Notification</button> 
-        <button (click)="logout()">About</button> 
-        <button (click)="logout()">Contact</button>  
+        <button (click)="goToContact()">Contact</button>  
         <button (click)="logout()">Logout</button>  
     </mat-toolbar-row>
 </mat-toolbar>

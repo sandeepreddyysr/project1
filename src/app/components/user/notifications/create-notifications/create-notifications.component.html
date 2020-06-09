@@ -11,7 +11,7 @@
 
         <mat-form-field appearance="outline" fxFlex="100%" class="mt-12">
           <mat-label>Tags</mat-label>
-          <mat-select formControlName="tags" multiple>
+          <mat-select [disabled]="editMode" formControlName="tags">
             <mat-option *ngFor="let tag of tagsList" [value]="tag.id">{{tag.name}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -21,11 +21,11 @@
           <input matInput placeholder="Url [https://google.co.in]" type="text" formControlName="link">
         </mat-form-field>
 
-        <input class="mt-12 upload-image" (change)="onFileSelect($event)" placeholder="Upload Notification Image" type="file"
+        <input [ngClass]="{'no-action': editMode}" class="mt-12 upload-image" (change)="onFileSelect($event)" placeholder="Upload Notification Image" type="file"
           formControlName="postImage" accept="image/*">
 
         <mat-form-field appearance="outline"  fxFlex="100%" class="mt-12">
-           <input matInput [ngxMatDatetimePicker]="picker1" 
+           <input [disabled]="editMode" matInput [ngxMatDatetimePicker]="picker1" 
               placeholder="Choose a date" formControlName="date">
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>

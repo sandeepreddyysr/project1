@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
     isAdmin: false
   };
   public postList: any = [];
+  public isScheduledRoute: boolean;
 
   constructor(private _storage: StorageService,
     public router: Router,
@@ -53,6 +54,9 @@ export class DashboardComponent implements OnInit {
       description: "Your news feed helps you keep up with recent activity on repositories you watch and people you follow.",
       imageURL: "https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"
     }]*/
+
+    this.isScheduledRoute = (this.router.url == '/user/scheduled-notifications') ? true : false;
+
     let data = this._storage.getStorageItem('loggedUser', 'local');
     console.log(data);
     if(data) {
@@ -72,7 +76,12 @@ export class DashboardComponent implements OnInit {
 
   getNotifications() {
 
-    const params = { url: 'notifications' };
+    let params;
+
+    if(!this.isScheduledRoute)
+      params = { url: 'notifications' };
+    else 
+      params = { url: 'schedules'};
 
     this._api.get(params).subscribe(result => {  
       console.log(result);

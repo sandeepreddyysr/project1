@@ -12,3 +12,17 @@
     letter-spacing: .5px;
     font-weight: bold;
 }
+
+.align-margin {
+	margin-top: 12px;
+}
+
+.image-align {
+	height: 150px;
+    width: 150px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    align-items: center;
+    text-align: center;
+    display: flex;
+}

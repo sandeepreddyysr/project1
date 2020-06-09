@@ -1,0 +1,19 @@
+#contact-us {
+	margin-top: 36px;
+}
+
+.location-box {
+	box-shadow: -4px 4px 5px 1px #8b98e4;
+    padding: 10px;
+    margin: 14px;
+    background: #efefef;
+    border-radius: 10px;
+}
+
+.info {
+	color: #5d5353;
+    font-size: 20px;
+    padding: 24px;
+    line-height: 30px;
+    letter-spacing: .3px;
+}

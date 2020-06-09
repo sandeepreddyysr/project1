@@ -52,5 +52,13 @@ export class HeaderComponent implements OnInit {
     postNotification() {
         this.router.navigateByUrl('/user/notifications/post-notification');
     }
+
+    goToSchedules() {
+      this.router.navigate(['/user/scheduled-notifications']);
+    }
+
+    goToContact() {
+      this.router.navigate(['/user/contact-us']);
+    }
   }
 

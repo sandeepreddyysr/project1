@@ -88,18 +88,19 @@ export class CreateNotificationsComponent implements OnInit {
 
     let postData = this._storage.getStorageItem('post', 'session');
 
-    if(postData._id == this.id) {
+    if(postData && postData._id == this.id) {
       this.notificationData.title = postData.title
       this.notificationData.description = postData.description
       this.notificationData.date = postData.date
       this.notificationData.id = postData._id
+      this.notificationData.tags = postData.tag
     }
 
   	this.postForm = this.formBuilder.group({
       postTitle: [this.notificationData.title, [Validators.required]],
       postDescription: [this.notificationData.description, Validators.required],
       postImage: [''],
-      tags: [],
+      tags: [this.notificationData.tags],
       link: [this.notificationData.link],
       date: [this.notificationData.date]
     });
@@ -144,11 +145,7 @@ export class CreateNotificationsComponent implements OnInit {
 
     this.token = data.token;
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'authorization': "Bearer " + this.token
-      })
-    };
+    
 
     const formData = new FormData();
     formData.append('image', this.postForm.get('postImage').value);
@@ -159,6 +156,11 @@ export class CreateNotificationsComponent implements OnInit {
     formData.append('link', this.postForm.value.link);
 
     if(!this.editMode) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'authorization': "Bearer " + this.token
+        })
+      };
       this.SERVER_URL = API_URL + 'create';
       this._httpClient.post<any>(this.SERVER_URL, formData, httpOptions).subscribe(
         (res) => this.router.navigate(['/user/dashboard']),
@@ -166,8 +168,19 @@ export class CreateNotificationsComponent implements OnInit {
       );
     }
     if(this.editMode) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'content-type': 'application/json',
+          'authorization': "Bearer " + this.token
+        })
+      };
+      let paramsData = {
+        title: this.postForm.value.postTitle,
+        description : this.postForm.value.postDescription,
+        link: this.postForm.value.link
+      }
       this.SERVER_URL = API_URL + 'update' + '/' + this.id;
-      this._httpClient.put<any>(this.SERVER_URL, formData).subscribe(
+      this._httpClient.put<any>(this.SERVER_URL, paramsData).subscribe(
         (res) => this.router.navigate(['/user/dashboard']),
         (err) => console.log(err)
       ); 

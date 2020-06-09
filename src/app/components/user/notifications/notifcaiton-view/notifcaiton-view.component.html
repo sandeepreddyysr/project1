@@ -1,12 +1,15 @@
 <div class="notification-view" fxLayout="column">
 	<mat-card class="mat-elevation-z8 notification-card" fxFlex="calc(33%-20px)" fxLayoutGap="20px">
 	  <mat-card-header fxLayoutAlign="space-between center">
-	    <mat-card-title>{{post.title}}</mat-card-title>
+	    <mat-card-title> <strong> TITLE : </strong>  {{post.title}}</mat-card-title>
 	    <div class="date">{{post.date | date: 'medium'}}</div>
 	  </mat-card-header>
 	  <mat-card-content>
-	  	<img src="{{post.imageURL}}" *ngIf="post.imageURL">
+	  	<img class="image-align" src="{{post.imageURL}}" onError="src='assets/images/404.svg'" *ngIf="post.imageURL">
+	  	<h2><strong> DESCRIPTION : </strong></h2>
 	    <div [innerHTML]="post.description"></div>
+	    <h4 class="align-margin"><strong>Tag : </strong> {{post.tag}}</h4>
+	    <h4 class="align-margin"><strong>Link : </strong> <a target="_new" *ngIf="post.link" href="{{post.link}}">{{post.link}}</a></h4>
 	  </mat-card-content>
 	</mat-card>
 </div>
