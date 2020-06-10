@@ -17,6 +17,7 @@ import { DatePipe } from '@angular/common';
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { JwtTokenService } from './jwt-token.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   ],
   providers: [ApiServiceService, StorageService, DatePipe, 
     { provide: HTTP_INTERCEPTORS, useClass: JwtTokenService, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
