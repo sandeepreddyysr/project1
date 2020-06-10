@@ -100,7 +100,7 @@ export class CreateNotificationsComponent implements OnInit {
       postTitle: [this.notificationData.title, [Validators.required]],
       postDescription: [this.notificationData.description, Validators.required],
       postImage: [''],
-      tags: [this.notificationData.tags],
+      tags: [this.notificationData.tags, Validators.required],
       link: [this.notificationData.link],
       date: [this.notificationData.date]
     });
@@ -136,10 +136,10 @@ export class CreateNotificationsComponent implements OnInit {
       dateEntered = false;
     }
 
-    if(this.postForm.value.tags) {
-      this.tagsListData = this.postForm.value.tags.join(',');
-      console.log(this.tagsListData);
-    }
+    // if(this.postForm.value.tags) {
+    //   this.tagsListData = this.postForm.value.tags.join(',');
+    //   console.log(this.tagsListData);
+    // }
 
     let data = this._storage.getStorageItem('loggedUser', 'local');
 
@@ -154,6 +154,7 @@ export class CreateNotificationsComponent implements OnInit {
     formData.append('scheduledDate', this.postForm.value.date);
     formData.append('isScheduled', dateEntered);
     formData.append('link', this.postForm.value.link);
+    formData.append('tag', this.postForm.value.tags);
 
     if(!this.editMode) {
       const httpOptions = {
